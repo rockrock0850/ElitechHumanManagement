@@ -1,0 +1,5 @@
+DELETE
+FROM
+    HR.EMPLOYEE T1
+WHERE
+    T1.EMP_ID = :empId

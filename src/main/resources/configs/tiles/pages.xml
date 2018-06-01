@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- 首頁
+	==================================================================================================== -->
+	<definition name="index.dash_board.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/dash_board/list_1.jsp" />
+	</definition>
+	
+	<!-- 人事資料管理
+	==================================================================================================== -->
+	<!-- 員工基本資料維護 -->
+	<definition name="hr.emp_management.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/emp_management/find_1.jsp" />
+	</definition>
+	<definition name="hr.emp_management.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/emp_management/list_1.jsp" />
+	</definition>
+	<definition name="hr.emp_management.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/emp_management/add_1.jsp" />
+	</definition>
+	<definition name="hr.emp_management.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/emp_management/edit_1.jsp" />
+	</definition>
+	
+	<!-- 部門基本資料維護 -->
+	<definition name="hr.dept_management.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/dept_management/find_1.jsp" />
+	</definition>
+	<definition name="hr.dept_management.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/dept_management/list_1.jsp" />
+	</definition>
+	<definition name="hr.dept_management.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/dept_management/add_1.jsp" />
+	</definition>
+	<definition name="hr.dept_management.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/dept_management/edit_1.jsp" />
+	</definition>
+	
+	<!-- 駐點基本資料 -->
+	<definition name="hr.location_management.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/location_management/find_1.jsp" />
+	</definition>
+	<definition name="hr.location_management.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/location_management/list_1.jsp" />
+	</definition>
+	<definition name="hr.location_management.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/location_management/add_1.jsp" />
+	</definition>
+	<definition name="hr.location_management.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/human/location_management/edit_1.jsp" />
+	</definition>
+	
+	<!-- 權限管理
+	==================================================================================================== -->
+	<!-- 群組帳號維護 -->
+	<definition name="auth.group_account.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_account/find_1.jsp" />
+	</definition>
+	<definition name="auth.group_account.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_account/list_1.jsp" />
+	</definition>
+	<definition name="auth.group_account.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_account/add_1.jsp" />
+	</definition>
+	<definition name="auth.group_account.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_account/edit_1.jsp" />
+	</definition>
+	
+	<!-- 群組權限管理 -->
+	<definition name="auth.group_authority.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_authority/find_1.jsp" />
+	</definition>
+	<definition name="auth.group_authority.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_authority/list_1.jsp" />
+	</definition>
+	<definition name="auth.group_authority.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/group_authority/edit_1.jsp" />
+	</definition>
+	
+	<!-- 使用者權限管理 -->
+	<definition name="auth.user_authority.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_authority/find_1.jsp" />
+	</definition>
+	<definition name="auth.user_authority.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_authority/list_1.jsp" />
+	</definition>
+	<definition name="auth.user_authority.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_authority/edit_1.jsp" />
+	</definition>
+	
+	<!-- 使用者角色設定 -->
+	<definition name="auth.user_role.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_role/find_1.jsp" />
+	</definition>
+	<definition name="auth.user_role.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_role/list_1.jsp" />
+	</definition>
+	<definition name="auth.user_role.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/auth/user_role/edit_1.jsp" />
+	</definition>
+	
+	<!-- 系統參數設定
+	==================================================================================================== -->
+	<!-- 假別資料維護 -->
+	<definition name="set.holiday_category.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_category/find_1.jsp" />
+	</definition>
+	<definition name="set.holiday_category.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_category/list_1.jsp" />
+	</definition>
+	<definition name="set.holiday_category.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_category/add_1.jsp" />
+	</definition>
+	<definition name="set.holiday_category.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_category/edit_1.jsp" />
+	</definition>
+	
+	<!-- 員工假別可休天數管理 -->
+	<definition name="set.holiday_emp.find_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_emp/find_1.jsp" />
+	</definition>
+	<definition name="set.holiday_emp.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_emp/list_1.jsp" />
+	</definition>
+	<definition name="set.holiday_emp.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_emp/add_1.jsp" />
+	</definition>
+	<definition name="set.holiday_emp.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/setting/holiday_emp/edit_1.jsp" />
+	</definition>
+	
+	
+	<!-- 請假管理
+	==================================================================================================== -->
+	<!-- 請假申請 -->
+	<definition name="leave.apply_leave.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/apply_leave/add_1.jsp" />
+	</definition>
+	
+	<!-- 簽核作業 -->
+	<definition name="leave.sign_process.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/sign_process/list_1.jsp" />
+	</definition>
+	<definition name="leave.sign_process.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/sign_process/edit_1.jsp" />
+	</definition>
+	
+	<!-- 已申請表單 -->
+	<definition name="leave.form_search.list_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/form_search/list_1.jsp" />
+	</definition>
+	<definition name="leave.form_search.edit_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/form_search/edit_1.jsp" />
+	</definition>
+	
+	<!-- 補休作業 -->
+	<definition name="leave.paid_leave.add_1" extends="one.column.theme">
+		<put-attribute name="content" value="/WEB-INF/pages/jsp/function/leave/paid_leave/add_1.jsp" />
+	</definition>
+	
+	<!-- 共用錯誤頁
+	==================================================================================================== -->
+	<definition name="common.error" extends="three.column.theme">
+		<put-attribute name="container" value="/WEB-INF/pages/jsp/layout/material/common_error.jsp" />
+	</definition>
+</tiles-definitions>

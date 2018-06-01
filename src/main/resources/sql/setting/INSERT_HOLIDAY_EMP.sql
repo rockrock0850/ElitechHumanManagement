@@ -1,0 +1,24 @@
+INSERT
+INTO
+    HR.LEAVE_SETTING
+    (
+        EMPTYPE,
+        LEAVETYPE_ID,
+        LEAVE_YEAR,
+        YEARS,
+        LEAVE_DAYS,
+        IS_PROPORTIONAL,
+        CREATE_USER,
+        CREATE_TIME
+    )
+    VALUES
+    (
+        :emptype,
+        :leaveTypeId,
+        :leaveYear,
+        :years,
+        :leaveDays,
+        :isProportional,
+        :createUser,
+        :createTime
+    )

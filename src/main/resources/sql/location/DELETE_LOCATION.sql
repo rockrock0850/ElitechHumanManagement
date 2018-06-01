@@ -1,0 +1,5 @@
+DELETE
+FROM
+    HR.LOCATION T1
+WHERE
+    T1.LOCATION_ID = :locationId

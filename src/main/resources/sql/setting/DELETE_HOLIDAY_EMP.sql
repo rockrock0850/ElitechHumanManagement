@@ -1,0 +1,6 @@
+DELETE
+FROM
+    HR.LEAVE_SETTING T1
+WHERE
+    T1.EMPTYPE = :emptype
+AND T1.LEAVE_YEAR = :leaveYear

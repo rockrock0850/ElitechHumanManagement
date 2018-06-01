@@ -1,0 +1,5 @@
+DELETE
+FROM
+    BASE.LEAVETYPE T1
+WHERE
+    T1.LEAVETYPE_ID = :leavetypeId

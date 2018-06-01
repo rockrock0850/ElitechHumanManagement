@@ -1,0 +1,7 @@
+DELETE
+FROM
+    PERMISSION.USER_ROLE T1
+WHERE
+    T1.ROLE_ID = :roleId
+AND T1.ROLE_NAME = :roleName
+AND T1.STATUS = :status

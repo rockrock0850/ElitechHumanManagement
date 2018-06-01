@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        					http://www.springframework.org/schema/beans/spring-beans.xsd  
+            				http://www.springframework.org/schema/context 
+            				http://www.springframework.org/schema/context/spring-context.xsd  
+            				http://www.springframework.org/schema/jee 
+            				http://www.springframework.org/schema/jee/spring-jee.xsd  
+            				http://www.springframework.org/schema/tx 
+            				http://www.springframework.org/schema/tx/spring-tx.xsd
+            				http://www.springframework.org/schema/mvc
+            				http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://www.springframework.org/schema/aop 
+							http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						    http://www.springframework.org/schema/data/jpa
+						    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<!-- 啟動注解的方式配置bean -->
+	<context:annotation-config />
+
+	<!-- 啟動mvc功能 -->
+	<mvc:annotation-driven />
+
+	<!-- 配置要掃描的套件 -->
+	<context:component-scan base-package="com.elitech.human.resource" />
+	
+	<context:property-placeholder
+		location="classpath:properties/config.properties"
+		ignore-unresolvable="true"/>
+	
+	<!-- 配置資料庫資料 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${dev.jdbc.driverClassName}" />
+		<property name="url" value="${dev.jdbc.url}" />
+		<property name="username" value="${dev.jdbc.username}" />
+		<property name="password" value="${dev.jdbc.password}" />
+	</bean>
+
+	<!-- Spring jdbc -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="jdbcDAO" class="com.elitech.human.resource.dao.jdbc.JdbcDAO">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<!-- Spring data jpa -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.elitech.human.resource.pojo" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${entitymanager.config.showSql}" />
+				<property name="database" value="${entitymanager.config.database}" />
+				<property name="generateDdl" value="${entitymanager.config.generateDdl}" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="jpaTxManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+		
+	<tx:annotation-driven transaction-manager="jpaTxManager" />
+		
+	<!-- 核心代碼 : Configures Spring Data JPA and sets the base package of DAOs. 	-->
+	<jpa:repositories base-package="com.elitech.human.resource.dao.jpa" 
+				      entity-manager-factory-ref="entityManagerFactory" 
+				      transaction-manager-ref="jpaTxManager"/>
+
+	<!-- 配置檔案上傳功能 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000" />
+	</bean>
+
+	<!-- 啟用aspect自動代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- tiles路徑設定 -->
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+	</bean>
+	
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>classpath:configs/tiles/themes.xml</value>
+				<value>classpath:configs/tiles/pages.xml</value> 
+			</list>
+		</property>
+	</bean>
+
+	<!-- 配置資源檔案路徑 -->
+	<mvc:resources mapping="pages/**" location="/WEB-INF/pages/" />
+    
+    <!-- Spring Interceptors -->
+    <mvc:interceptors>
+    	<mvc:interceptor>  
+    		<mvc:mapping path="/Entries/**" />
+    		<mvc:mapping path="/Function/**" />
+    		<!-- <mvc:exclude-mapping path="/session/*.action"/> -->
+    		<bean class="com.elitech.human.resource.interceptor.AuthInterceptor" />
+    	</mvc:interceptor>
+    	<mvc:interceptor>  
+    		<mvc:mapping path="/Entries/**" />
+    		<!-- <mvc:exclude-mapping path="/session/*.action"/> -->
+    		<bean class="com.elitech.human.resource.interceptor.FunctionInfoInterceptor" />
+    	</mvc:interceptor>
+    	<mvc:interceptor>  
+    		<mvc:mapping path="/Function/**" />
+    		<!-- <mvc:exclude-mapping path="/session/*.action"/> -->
+    		<bean class="com.elitech.human.resource.interceptor.ButtonInfoInterceptor" />
+    	</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- Spring Redis -->
+	<bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="usePool" value='true' />
+		<property name="hostName" value='${redis.host}' />
+		<property name="password" value='${redis.password}' />
+		<property name="port" value='${redis.port}' />
+	</bean>
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref='connectionFactory' />
+	</bean>
+	
+	<!-- Spring mail -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="elitechtw.system@gmail.com" />
+		<property name="password" value="QF995QStv@Qzs7h" />
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.debug">true</prop>
+            	<prop key="mail.smtp.auth">true</prop>
+            	<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+        	</props>
+		</property>
+		
+	</bean>
+	
+	<bean class="com.elitech.human.resource.util.MailUtil">
+		<property name="sender" ref="mailSender" />
+	</bean>
+</beans>

@@ -1,0 +1,41 @@
+.hidden {
+	display: none;
+}
+
+.menu {
+	z-index: 1;
+    position: relative;
+    top: 10px;
+    margin-left: 7px;
+}
+
+.header {
+	z-index: 0;
+    position: absolute;
+    width: -webkit-fill-available;
+    height: 60px;
+    border: 1px #666 dashed;
+    margin-top: 5px;
+}
+
+.content {
+    z-index: 0;
+    position: relative;
+    border: 1px #666 dashed;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.footer {
+	z-index: 0;
+    border: 1px #666 dashed;
+    margin-bottom: 5px;
+    position: absolute;
+    width: -webkit-fill-available;
+}
+
+a {
+	text-decoration: none !important;
+}
